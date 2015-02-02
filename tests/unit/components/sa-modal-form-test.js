@@ -3,6 +3,8 @@ import {
   test
 } from 'ember-qunit';
 import Ember from 'ember';
+import Initializer from 'sa-modal/initializers/tappable';
+Initializer.initialize();
 moduleForComponent('sa-modal-form', 'Modal Form', {
   needs : ['component:sa-modal-title', 'component:sa-modal-trigger']
 });
