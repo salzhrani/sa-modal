@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'sa-modal'
+  name: 'sa-modal',
+  included: function(app) {
+      this._super.included(app);
+      app.import('vendor/styles.css');
+    }
 };

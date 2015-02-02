@@ -1,0 +1,14 @@
+{{#if isOpen}}
+  <sa-modal-main>
+    {{#if makeTitle}}
+      {{#sa-modal-title}}Modal Content{{/sa-modal-title}}
+    {{/if}}
+
+    {{#if makeTrigger}}
+      {{#sa-modal-trigger class="sa-modal-close" aria-label="close"}}×{{/sa-modal-trigger}}
+    {{/if}}
+
+    {{yield}}
+
+  </sa-modal-main>
+{{/if}}
