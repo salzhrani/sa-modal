@@ -228,6 +228,9 @@ export default Ember.Component.extend({
     }
   },
 
+  // allow to override the keyboard escape behaviour
+  keyboardEscape: true,
+
   /**
    * @method handleKeyDown
    * @private
@@ -235,7 +238,7 @@ export default Ember.Component.extend({
 
   handleKeyDown: function(event) {
     if (event.keyCode === 9 /*tab*/) { this.keepTabNavInside(event); }
-    if (event.keyCode === 27 /*esc*/) { this.close(); }
+    if (event.keyCode === 27 /*esc*/ && this.keyboardEscape) { this.close(); }
   }.on('keyDown'),
 
   /**

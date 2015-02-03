@@ -1,6 +1,6 @@
 {
   "name": "sa-modal",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "an ember-cli friendly fork of ic-modal",
   "directories": {
     "doc": "doc",
