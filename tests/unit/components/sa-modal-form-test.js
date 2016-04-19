@@ -4,30 +4,35 @@ import {
 } from 'ember-qunit';
 import Ember from 'ember';
 import Initializer from 'sa-modal/initializers/tappable';
+import hbs from 'htmlbars-inline-precompile';
+
 Initializer.initialize();
 moduleForComponent('sa-modal-form', 'Modal Form', {
-  needs : ['component:sa-modal-title', 'component:sa-modal-trigger']
+  needs : ['component:sa-modal-title', 'component:sa-modal-trigger'],
+  unit: true
 });
-test('renders', function(){
-  expect(6);
+
+test('renders', function(assert) {
+  assert.expect(6);
   var form = this.subject({
-    layout: Ember.Handlebars.compile('form content here <button type="submit"></button>')
+    layout: hbs`form content here <button type="submit"></button>`
   });
-  equal(form._state, 'preRender');
-  this.append();
-  equal(form._state, 'inDOM');
+
+  assert.equal(form._state, 'preRender');
+  this.render();
+  assert.equal(form._state, 'inDOM');
   // has proper class name
-  ok(form.$().hasClass('sa-modal-form'));
+  assert.ok(form.$().hasClass('sa-modal-form'));
   // shows layout
-  equal(form.$().text().trim(), 'form content here');
+  assert.equal(form.$().text().trim(), 'form content here');
   // closes when submit button is clicked
   Ember.run(function(){
     form.open();
     Ember.run.scheduleOnce('afterRender', this, function(){
-      equal(form.$().attr('is-open'), 'true');
+      assert.equal(form.$().attr('is-open'), 'true');
       form.$('button').trigger('click');
       Ember.run.scheduleOnce('afterRender', this, function(){
-        equal(form.$().attr('is-open'), undefined);
+        assert.equal(form.$().attr('is-open'), undefined);
       });
     });
   });

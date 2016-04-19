@@ -39,7 +39,7 @@ export default Ember.Component.extend({
    * @private
    */
 
-  findModal: function() {
+  findModal: Ember.on('willInsertElement', function() {
     var parent = findParent(this);
     if (parent) {
       // we don't care about "controls" if we are child
@@ -51,7 +51,7 @@ export default Ember.Component.extend({
         this.set('modal', Ember.View.views[this.get('controls')]);
       });
     }
-  }.on('willInsertElement'),
+  }),
 
   /**
    * Shows or hides the associated modal.
@@ -60,12 +60,12 @@ export default Ember.Component.extend({
    * @private
    */
 
-  toggleModalVisibility: function(event) {
+  toggleModalVisibility: Ember.on('click', function(event) {
     this.sendAction('on-toggle', this);
     // don't focus if it was a mouse click, cause that's ugly
     var wasMouse = event.clientX && event.clientY;
     this.get('modal').toggleVisibility(this, {focus: !wasMouse});
-  }.on('click'),
+  }),
 
   /**
    * When a modal closes it will return focus to the trigger that opened

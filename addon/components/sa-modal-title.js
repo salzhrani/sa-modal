@@ -20,8 +20,8 @@ export default Ember.Component.extend({
    * @private
    */
 
-  registerWithModal: function() {
+  registerWithModal: Ember.on('willInsertElement', function() {
     this.get('parentView').registerTitle(this);
-  }.on('willInsertElement')
+  })
 
 });

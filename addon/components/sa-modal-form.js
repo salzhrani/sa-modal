@@ -78,7 +78,7 @@ export default ModalComponent.extend({
    * @private
    */
 
-  handleSubmit: function(event) {
+  handleSubmit: Ember.on('submit', function(event) {
     event.preventDefault();
     this.set('didSubmit', true);
     // loses focus on submit, this might be better solved in ModalComponent but
@@ -96,7 +96,7 @@ export default ModalComponent.extend({
     } else {
       this.close();
     }
-  }.on('submit'),
+  }),
 
   close: function() {
     if (this.get('awaiting-return-value')) {
