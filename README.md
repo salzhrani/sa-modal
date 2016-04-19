@@ -1,4 +1,4 @@
-# Sa-modal
+# sa-modal [![Build Status](https://travis-ci.org/salzhrani/sa-modal.svg?branch=master)](https://travis-ci.org/salzhrani/sa-modal)
 
 This README outlines the details of collaborating on this Ember addon.
 
