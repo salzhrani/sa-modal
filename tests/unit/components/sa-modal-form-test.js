@@ -31,7 +31,7 @@ test('renders', function(assert) {
     Ember.run.scheduleOnce('afterRender', this, function(){
       assert.equal(form.$().attr('is-open'), 'true');
       form.$('button').trigger('click');
-      Ember.run.scheduleOnce('afterRender', this, function(){
+      Ember.run.next(this, function(){
         assert.equal(form.$().attr('is-open'), undefined);
       });
     });

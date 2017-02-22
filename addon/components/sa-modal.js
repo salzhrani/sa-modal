@@ -147,9 +147,7 @@ export default Ember.Component.extend({
       this.maybeMakeDefaultChildren();
       this.set('after-open', 'true');
       this.trigger('didOpen');
-      if (this.attrs['open-when']) {
-        this.attrs['open-when'].update(false);
-      }
+      this.set('open-when', false);
       if (options.focus !== false) {
         // after render because we want the the default close button to get focus
         Ember.run.schedule('afterRender', this, 'focus');
@@ -176,9 +174,7 @@ export default Ember.Component.extend({
     this.sendAction('on-close', this);
     this.set('isOpen', false);
     this.set('after-open', null);
-    if (this.attrs['close-when']) {
-      this.attrs['close-when'].update(false);
-    }
+    this.set('close-when', false);
     lastOpenedModal = null;
     var toggler = this.get('toggler');
     if (toggler) {

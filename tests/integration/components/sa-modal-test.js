@@ -9,6 +9,8 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
+  assert.expect(4);
+
   this.render(hbs`{{sa-modal}}`);
 
   assert.equal(this.$().text().trim(), '');
@@ -29,6 +31,9 @@ test('it renders', function(assert) {
   // Close modal
   this.set('closeWhen', true);
   assert.notOk(this.$().text().trim().indexOf('template block text') > 0);
+
+  this.set('closeWhen', false);
+  this.set('openWhen', false);
 
   // Reopen modal
   this.set('openWhen', true);

@@ -26,7 +26,7 @@ test('it renders', function(assert) {
     modal.open();
     Ember.run.scheduleOnce('afterRender', null, function(){
       find('sa-modal sa-modal-main', modal.$());
-      Ember.run.scheduleOnce('afterRender', null, function(){
+      Ember.run.next(null, function(){
         find('button.sa-modal-trigger', modal.$());
         find('sa-modal-title', modal.$());
         assert.equal($('sa-modal-title').text(), 'Modal Content');
@@ -60,7 +60,7 @@ test('it renders', function(assert) {
     });
   });
 
-  // closing a modal using close()
+  // closing a modal using close-when
   Ember.run(function(){
     modal.set('close-when', true);
     assert.equal(modal.get('isOpen'), false);
@@ -72,26 +72,18 @@ test('it renders', function(assert) {
   });
 
   // closes when clicking outside
-  Ember.run(function(){
+  Ember.run(() => {
     modal.open();
-    Ember.run.scheduleOnce('afterRender', null, function(){
-      modal.$().trigger('click');
-      Ember.run.scheduleOnce('afterRender', null, function(){
-        assert.equal(modal.$('button.sa-modal-trigger').length, 0);
-        assert.equal(modal.$('sa-modal-title').length, 0);
-      });
-    });
+    modal.$().trigger('click');
+    assert.equal(modal.$('button.sa-modal-trigger').length, 0);
+    assert.equal(modal.$('sa-modal-title').length, 0);
   });
 
   // closes when clicking the trigger
-  Ember.run(function(){
+  Ember.run(() => {
     modal.open();
-    Ember.run.scheduleOnce('afterRender', null, function(){
-      modal.$('.sa-modal-trigger').trigger('click');
-      Ember.run.scheduleOnce('afterRender', null, function(){
-        assert.equal(modal.$('button.sa-modal-trigger').length, 0);
-        assert.equal(modal.$('sa-modal-title').length, 0);
-      });
-    });
+    modal.$('.sa-modal-trigger').trigger('click');
+    assert.equal(modal.$('button.sa-modal-trigger').length, 0);
+    assert.equal(modal.$('sa-modal-title').length, 0);
   });
 });
